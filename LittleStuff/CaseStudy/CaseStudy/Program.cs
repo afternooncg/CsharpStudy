@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CaseStudy.ThreadTest.MonitorTest;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,9 @@ namespace CaseStudy
             //Threads
             // CaseStudy.ThreadTest.MonitorTest.MonsterCase.RunTestEnterAndExit();
             //CaseStudy.ThreadTest.MonitorTest.MonitorCase.RunTestWaitAndPluse();
-            CaseStudy.ThreadTest.MonitorTest.MonitorCase.RunTestTryEnter();
+           // CaseStudy.ThreadTest.MonitorTest.MonitorCase.RunTestTryEnter();
+
+            MonitorWithTime.RunTest();
             
         }
     }
