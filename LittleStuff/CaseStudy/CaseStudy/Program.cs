@@ -1,4 +1,5 @@
-﻿using CaseStudy.ThreadTest.MonitorTest;
+﻿using CaseStudy.IoTest;
+using CaseStudy.ThreadTest.MonitorTest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,11 @@ namespace CaseStudy
             //CaseStudy.ThreadTest.MonitorTest.MonitorCase.RunTestWaitAndPluse();
            // CaseStudy.ThreadTest.MonitorTest.MonitorCase.RunTestTryEnter();
 
-            MonitorWithTime.RunTest();
+           // MonitorWithTime.RunTest();
+
+           // StreamTest.IoTest();
+
+            MemTest.MemTest.MarshalStructureToPtrTest();
             
         }
     }

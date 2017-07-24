@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IoTest\StreamTest.cs" />
+    <Compile Include="MemTest\MemTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThreadTest\MonitorTest\MonitorWithTime.cs" />

@@ -3,18 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Client
 {
+
+    //[StructLayout(LayoutKind.Sequential, Pack = 1)]
+    struct TestData
+    {
+        public byte a ;
+     //   public byte b;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3)] 
+
+      //  public ushort d;
+        public string c;
+        
+    }
+
     public class Connect
     {
         private Socket m_socket;
         private int i = 0;
         public Connect()
         {
+
+            Console.WriteLine(Marshal.SizeOf(typeof(TestData)));
+
+           // return;
 
             m_socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             IPAddress ipa = IPAddress.Parse("127.0.0.1");
@@ -43,6 +61,9 @@ namespace Client
                     {
                         byte[] s = new byte[m_socket.Available];
                         m_socket.Receive(s);
+
+                      
+
                         Console.WriteLine(ASCIIEncoding.ASCII.GetString(s));
 
                     }                
@@ -100,6 +121,14 @@ namespace Client
                 {
                     byte[] byteRecive = new byte[100];
                     socket.Receive(byteRecive);
+
+                    IntPtr ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(TestData)));
+                    Marshal.Copy(byteRecive, 0, ptr, Marshal.SizeOf(typeof(TestData)));
+                    object obj = Marshal.PtrToStructure(ptr, typeof(TestData));
+                    
+                    string tmp = Encoding.ASCII.GetString(  new byte[]{((TestData)obj  ).a});
+                    Marshal.FreeHGlobal(ptr);
+
                     Console.WriteLine(Encoding.ASCII.GetString(byteRecive));
                 }
                 
